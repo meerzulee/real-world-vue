@@ -1,11 +1,33 @@
-import Vue from "vue";
-import Vuex from "vuex";
-
-Vue.use(Vuex);
+import Vue from 'vue'
+import Vuex from 'vuex'
+import * as user from '@/store/modules/user.js'
+import * as event from '@/store/modules/event.js'
+import notification from '@/store/modules/notification.js'
+Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
-});
+  modules: {
+    user,
+    event,
+    notification
+  },
+  state: {
+    categories: [
+      'sustainability',
+      'nature',
+      'animal welfare',
+      'housing',
+      'education',
+      'food',
+      'community'
+    ]
+  },
+  getters: {
+    catLength: state => {
+      return state.categories.length
+    },
+    totalPage: state => {
+      return Math.ceil(state.event.totalEvents / 3)
+    }
+  }
+})
