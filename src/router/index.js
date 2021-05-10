@@ -1,33 +1,29 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import EventShow from '@/views/EventShow.vue'
-import EventCreate from '@/views/EventCreate.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 import EventList from '@/views/EventList.vue'
-
-Vue.use(VueRouter)
+import EventDetails from '@/views/EventDetails.vue'
+import About from '@/views/About.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'event-list',
+    name: 'EventList',
     component: EventList
   },
   {
-    path: '/event/create',
-    name: 'event-create',
-    component: EventCreate
+    path: '/event/:id',
+    name: 'EventDetails',
+    props: true,
+    component: EventDetails
   },
   {
-    path: '/event/:id',
-    name: 'event-show',
-    component: EventShow,
-    props: true
+    path: '/about',
+    name: 'About',
+    component: About
   }
 ]
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
