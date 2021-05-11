@@ -1,0 +1,1 @@
+export const state = { user: { id: "kek123", name: "Meerzulee" }, }
